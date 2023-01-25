@@ -1,2 +1,2 @@
-# hey its naumika
+# GitHub
  
