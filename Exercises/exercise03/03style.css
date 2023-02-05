@@ -1,0 +1,24 @@
+h1{
+    font-size: 24px;
+    font-weight: bolder;
+    color: #ffffff;
+    text-transform: uppercase;
+    background-color: #167c80;
+}
+
+h3{
+font-size: 18px;
+font-weight: bold;
+color: #167c80;
+}
+
+p{
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+}
+
+strong {
+    font-weight: bolder;
+    color: #167c80;
+    font-size: 16px;
+}

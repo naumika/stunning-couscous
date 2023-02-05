@@ -1,8 +1,13 @@
-h2 {
-    color:blue;
+h2{
+    font-size: 24px;
+    font-weight: bolder;
+    color: #1637F2;
+    background-color:#F2C5BB;
 }
 
-.bio{
-    margin-top: 20px;
-    border: ;
+h3{
+    font-size: 18px;
+    font-weight: bold;
+    color:#1637F2
 }
+
