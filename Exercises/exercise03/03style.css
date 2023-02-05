@@ -22,3 +22,11 @@ strong {
     color: #167c80;
     font-size: 16px;
 }
+
+body {
+    margin-top: 18px;
+    margin-left: 24px;
+    margin-right: 24px;
+    border: 2px solid black;
+    padding: 12px;
+}
