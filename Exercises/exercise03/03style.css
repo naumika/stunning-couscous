@@ -4,6 +4,7 @@ h1{
     color: #ffffff;
     text-transform: uppercase;
     background-color: #167c80;
+    font-family: 'Roboto', sans-serif
 }
 
 h3{
@@ -29,4 +30,18 @@ body {
     margin-right: 24px;
     border: 2px solid black;
     padding: 12px;
+}
+
+.container {
+    background: #f9f7e8;
+    padding: 20px 40px;
+    line-height: 28px;
+}
+
+.pullquote {
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    font-size: 24px;
+    font-style: italic;
+    line-height: 32px;
 }
