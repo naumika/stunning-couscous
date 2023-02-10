@@ -4,7 +4,6 @@ h1{
     color: #ffffff;
     text-transform: uppercase;
     background-color: #167c80;
-    font-family: 'Roboto', sans-serif
 }
 
 h3{
@@ -44,4 +43,10 @@ body {
     font-size: 24px;
     font-style: italic;
     line-height: 32px;
+}
+
+.term {
+    font-size: 24px;
+    font-style: italic;
+    color: #167c80;
 }
