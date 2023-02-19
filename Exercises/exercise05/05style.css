@@ -163,6 +163,7 @@ header {
 
   .image img {
     height: 100px;
+    width: 100px;
     object-position: 50% 50%;
     flex-direction: row;
   }
