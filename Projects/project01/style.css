@@ -70,3 +70,55 @@ p {
     border-radius: 50%; 
     overflow: hidden; 
 }
+
+
+@media (max-width: 960px) {
+    .column-wrapper {
+        display: flex;
+    }
+    
+    .text-column, .image-column {
+      width: 50%;
+      flex-direction: row;
+      display: flex;
+    }
+
+    .title{
+        float: left;
+        margin-left: 150px;
+    }
+    
+    .image-column{
+        float: right;
+        width: 650px; 
+        height: 650px; 
+        border-radius: 50%; 
+        overflow: hidden; 
+    }
+}
+
+
+@media (max-width: 450px) {
+    .column-wrapper {
+        display: flex;
+    }
+    
+    .text-column, .image-column {
+      width: 50%;
+      flex-direction: row;
+      display: flex;
+    }
+    
+    .title{
+        float: left;
+        margin-left: 0px;
+    }
+
+    .image-column{
+        float: right;
+        width: 650px; 
+        height: 650px; 
+        border-radius: 50%; 
+        overflow: hidden; 
+    }
+}
