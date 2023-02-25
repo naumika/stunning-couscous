@@ -1,0 +1,54 @@
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+nav {
+  height: 60px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    background-color: bisque;
+    line-height: 60px;
+}
+
+a {
+  color:white;
+  text-decoration: none;
+}
+
+ul {
+  background: tomato;
+  display: flex;
+  flex-wrap: non-wrap;
+  justify-content: space-around;
+  line-height: 60px;
+}
+
+li {
+    padding: 10px;
+}
+
+
+@keyframes colors{
+    0% {
+        background-color: tomato;
+    }
+    40% {
+        background-color: #cc0000;
+    }
+    60% {
+        background-color: #800000;
+    }
+    100% {
+        background-color: tomato;
+    }
+}
