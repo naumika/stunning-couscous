@@ -1,6 +1,6 @@
 header{
     margin-top: 10px;
-    margin-left: 50px;
+    margin-left: 0px;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
     margin-top: 150px;
     margin-left: 450px;
     vertical-align: middle;
-    text-align: center;
+    text-align: left;
 }
 
 h2{
@@ -32,12 +32,11 @@ h2{
     border: 0;
     font: inherit;
     vertical-align: middle;
-    text-align: center;
+    text-align: left;
 }
 
 .links {
-    font-size: 15px;
-    line-height: 170%;
+    font-size: 12px;
 }
 
 a {
@@ -49,7 +48,8 @@ a {
 }
 
 p {
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 12px;
 }
 
 
