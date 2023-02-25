@@ -1,3 +1,8 @@
+header{
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
 body {
     background: #ffffff;
     line-height: 1.4;
@@ -6,41 +11,9 @@ body {
     color: #231f20;
 }
 
-.content-page-outer{
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    vertical-align: baseline;
-}
-
-.content-page-full-width {
-        display: table-cell;
-        vertical-align: middle;
-        text-align: center;
-        height: 100%;
-        width: 100%;
-        line-height: 1.6;
-        max-width: 600px;
-        margin-left: 2em;
-        
-}
-
-.format-page-container{
-    color: #231f20;
-    padding: 0;
-    border: 0;
-    vertical-align: baseline;
-    box-sizing: border-box;
-    position: relative;
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: left;
-    
-}
-
 .title {
-    margin-bottom: 20px;
+    margin-top: 150px;
+    margin-left: 450px;
     vertical-align: middle;
     text-align: center;
 }
@@ -79,21 +52,21 @@ p {
     font-size: 15px;
 }
 
-.image-position{
-    float: center; 
-    width: 750px; 
-    height: 750px; 
+
+.column-wrapper {
+    display: flex;
+}
+
+.text-column, .image-column {
+  width: 50%;
+  flex-direction: row;
+  display: flex;
+}
+
+.image-column{
+    float: right;
+    width: 650px; 
+    height: 650px; 
     border-radius: 50%; 
-    overflow: hidden;  
-    vertical-align: middle;
+    overflow: hidden; 
 }
-
-.image img {
-    width: 100%; 
-    height: auto;
-    align-items: end;
-    vertical-align: top;
-}
-
-
-
