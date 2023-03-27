@@ -5,8 +5,6 @@ Instructions: when a user clicks on one of the colored dots, the    background c
 Hint: Classes for each color have already been defined in the CSS tab.
 
 */
-const select = document.querySelector('#color-scheme-select');
-const content = document.querySelector('.content');
 
 // 1 -- Select each button
 
