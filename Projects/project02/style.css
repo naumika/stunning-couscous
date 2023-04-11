@@ -1,0 +1,21 @@
+.image-container {
+    position: relative; /* Set the position of the container to relative */
+  }
+  
+  .myImage1{
+    position: absolute; /* Set the position of the first image to absolute */
+    top: 0;
+    left: 0;
+    z-index: 1; /* Set the z-index of the first image to 1 */
+  }
+  
+  .myImage2 {
+    position: absolute; /* Set the position of the second image to absolute */
+    top: 50px;
+    left: 50px;
+    z-index: 2; /* Set the z-index of the second image to 2 */
+  }
+
+  .image-container:hover {
+    cursor: pointer;
+  }
