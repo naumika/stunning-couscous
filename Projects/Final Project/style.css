@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+body{
+  line-height: 20px;
+  background-color: salmon; 
+}
+
+h1 { 
+  font-size: 28px;
+  margin: 12px;
+  line-height: 24px;
+ }
+
+.column-wrapper {
+    display: flex;
+}
+
+.maincontainer1 {
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  padding: 10px ;
+}
+
+.left1, .right1, .b {
+    height: 100%;
+    margin: 14px;
+}
+
+.left1 {
+  background: red;
+  width: 70%;
+}
+
+.right1{
+  background: blue;
+  width: 10%;
+}
+
+.pullquote{
+  margin: 12px;
+  height: 100%;
+}
+
+.maincontainer2{
+  background: pink;
+  width: 100%;
+  height: 100%;
+}
