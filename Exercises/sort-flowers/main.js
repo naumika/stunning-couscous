@@ -34,12 +34,59 @@ const flowers = [
 //---------- RENDER FLOWERS TO PAGE
 const ul = document.querySelector("ul");
 
-function renderFlowersToPage(data) {}
+function renderFlowersToPage(results) {
+  //iterate over data set
+  for(let i = 0; i < results.length; i++){
+    // create list item 
+    let listItem = document.createElement('li');
+    // add a class to each item of the results
+    listItem.classList.add('card', results[i].color) //Red
+    // add the flower name
+    let title = document.createElement('h3')
+    title.textContent = results[i].name //Rose 
+    // add flower color
+    let color = document.createElement('p')
+    color.classList.add(results[i].color)
+    color.textContent = results[i].color
+    
+    // append flower image
+    let image = document.createElement('img')
+    image.setAttribute('src', results[i].image)
+
+
+    ul.appendChild(listItem)
+    listItem.appendChild(title)
+    listItem.appendChild(color)
+    listItem.appendChild(image)
+}
+};
 renderFlowersToPage(flowers);
 
 //---------- SORTING METHOD AND COMPARE FUNCTION
 let filterBtns = document.querySelector(".filters");
 let cards = document.querySelectorAll(".card");
 
-function sortingFn(e) {}
+function sortingFn(event) {
+  if(event.target.classList.contains('filter-btn')){
+    const filterValue = event.target.getAttribute('data-filter');
+  
+  if(filterValue === 'ascending'){
+    flowers.sort(function(a,b){
+      if(a.name < b.name){
+        return -1 
+      }
+      if(a.name > b.name){
+        return 1 
+      }
+      return 0
+    })
+      renderFlowersToPage(flowers)
+    } else if (filterValue === 'descending'){
+
+      ul.innerHTML = ""
+
+    }
+  }
+}
+
 filterBtns.addEventListener("click", sortingFn);
