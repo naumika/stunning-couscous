@@ -34,7 +34,7 @@ function renderFlowersToPage(results) {
     // add a class to each item of the results
     listItem.classList.add('card', results[i].category) //Birds
     // add the flower name
-    let title = document.createElement('h3')
+    let title = document.createElement('h4')
     title.textContent = results[i].name //Rose 
     // add flower category
     let category = document.createElement('p')
