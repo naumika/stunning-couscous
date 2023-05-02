@@ -86,43 +86,5 @@ function filterFn(event) {
 
 filterBtns.addEventListener("click", filterFn);
 
-// JavaScript
-const library = document.getElementById('library');
-const canvas = document.getElementById('canvas');
-
-// dragstart event listener on each element in the library
-library.querySelectorAll('[draggable="true"]').forEach(element => {
-  element.addEventListener('dragstart', event => {
-    event.dataTransfer.setData('text/plain', event.target.id);
-  });
-});
-
-// dragover event listener on the canvas
-canvas.addEventListener('dragover', event => {
-  event.preventDefault();
-  event.dataTransfer.dropEffect = 'move';
-});
-
-// drop event listener on the canvas
-canvas.addEventListener('drop', event => {
-  event.preventDefault();
-  const elementId = event.dataTransfer.getData('text/plain');
-  const element = document.getElementById(elementId);
-  const clone = element.cloneNode(true);
-  clone.setAttribute('draggable', false);
-  clone.style.position = 'absolute';
-  clone.style.left = `${event.clientX}px`;
-  clone.style.top = `${event.clientY}px`;
-  canvas.appendChild(clone);
-});
-
-// drag event listener on each element on the canvas
-canvas.querySelectorAll('[draggable="false"]').forEach(element => {
-  element.addEventListener('drag', event => {
-    const canvasRect = canvas.getBoundingClientRect();
-    element.style.left = `${event.clientX - canvasRect.left}px`;
-    element.style.top = `${event.clientY - canvasRect.top}px`;
-  });
-});
 
 
