@@ -2,57 +2,59 @@ console.log('this works')
 
 //---------- DATASET
 
-/*const flowers = [
+const data = [
   {
-    name: "Tulip",
-    category: "Plants",
+    name: "Oncorhynchus",
+    category: "Fishes",
     image:
-      "https://cdn.britannica.com/37/227037-050-CA792866/Broken-tulip-flower.jpg"
+      "https://user-images.githubusercontent.com/122947570/236067099-5e9ad69b-f925-446a-bd9a-e71cf0d85c08.jpg"
   },
   {
-    name: "Daffodil",
-    category: "Plants",
-    image: "https://h2.commercev3.net/cdn.brecks.com/images/800/67248A.jpg"
-  },
-  {
-    name: "Sunflower",
-    category: "Plants",
+    name: "Astyanax microlepis",
+    category: "Fishes",
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/800px-Sunflower_sky_backdrop.jpg"
+      "https://user-images.githubusercontent.com/122947570/236073710-4e483ed9-a87f-4cb8-91b9-9420b95a9bbe.png"
   },
-]; */
+  {
+    name: "Bocachico",
+    category: "Fishes",
+    image:
+      "https://user-images.githubusercontent.com/122947570/236073782-7d56271b-bcaa-4307-923c-c7271a66cca4.png"
+  },
+]; 
 
 //---------- RENDER FLOWERS TO PAGE
+const container = document.querySelector(".container");
 
-const ul = document.querySelector("ul");
-
-function renderFlowersToPage(results) {
+function renderDataToPage(results) {
   //iterate over data set
   for(let i = 0; i < results.length; i++){
     // create list item 
-    let listItem = document.createElement('li');
+    let card = document.createElement('div');
     // add a class to each item of the results
-    listItem.classList.add('card', results[i].category) //Birds
-    // add the flower name
+    card.classList.add('card', results[i].category) //Fishes
+    // add the data name
     let title = document.createElement('h4')
-    title.textContent = results[i].name //Rose 
-    // add flower category
+    title.textContent = results[i].name //Oncorhynchus 
+    // add data category
     let category = document.createElement('p')
     category.classList.add(results[i].category)
     category.textContent = results[i].category
-    
+    // Add draggable attributes
+    card.setAttribute('draggable', true);
+    card.setAttribute('data-item', i);
     // append flower image
     let image = document.createElement('img')
     image.setAttribute('src', results[i].image)
 
 
-    ul.appendChild(listItem)
-    listItem.appendChild(title)
-    listItem.appendChild(category)
-    listItem.appendChild(image)
+    container.appendChild(card)
+    card.appendChild(title)
+    card.appendChild(category)
+    card.appendChild(image)
 }
 };
-renderFlowersToPage(flowers);
+renderDataToPage(data);
 
 //---------- FILTER FLOWERS BY category
 
@@ -70,7 +72,7 @@ function filterFn(event) {
     // apply the active class to the target
     event.target.classList.add('active')
 
-    const filterValue = event.target.getAttribute('data-filter') // Plants
+    const filterValue = event.target.getAttribute('category') // Fish
 
     for(let i = 0; i < cards.length; i++){
       if(cards[i].classList.contains(filterValue) || filterValue === 'all'){
@@ -86,43 +88,41 @@ function filterFn(event) {
 
 filterBtns.addEventListener("click", filterFn);
 
-// JavaScript
-const library = document.getElementById('library');
-const canvas = document.getElementById('canvas');
 
-// dragstart event listener on each element in the library
-library.querySelectorAll('[draggable="true"]').forEach(element => {
-  element.addEventListener('dragstart', event => {
-    event.dataTransfer.setData('text/plain', event.target.id);
-  });
-});
+// drag and drop
+function dragStartHandler(event){
+  let style = getComputedStyle(event.target, null);
+  console.log(event)
+  console.log(style)
+  console.log(event.clientX)
+  event.dataTransfer.setData('text/plain', (parseInt(style.getPropertyValue("left"), 10) - event.clientX) + ',' + (parseInt(style.getPropertyValue("top"), 10) - event.clientY) + ',' + event.target.getAttribute('data-item'))
+  event.currentTarget.style.backgroundColor = 'yellow'
+}
 
-// dragover event listener on the canvas
-canvas.addEventListener('dragover', event => {
+function dragOverHandler(event){
   event.preventDefault();
-  event.dataTransfer.dropEffect = 'move';
-});
+  event.dataTransfer.dropEffect = "move";
+  return false
+}
 
-// drop event listener on the canvas
-canvas.addEventListener('drop', event => {
-  event.preventDefault();
-  const elementId = event.dataTransfer.getData('text/plain');
-  const element = document.getElementById(elementId);
-  const clone = element.cloneNode(true);
-  clone.setAttribute('draggable', false);
-  clone.style.position = 'absolute';
-  clone.style.left = `${event.clientX}px`;
-  clone.style.top = `${event.clientY}px`;
-  canvas.appendChild(clone);
-});
+function dropHandler(event){
+  let offset = event.dataTransfer.getData("text/plain").split(',')
+  console.log('offset', offset)
+  let elements = document.getElementsByClassName('card')
+    elements[parseInt(offset[2])].style.left = (event.clientX + parseInt(offset[0], 10)) + 'px';
+    elements[parseInt(offset[2])].style.top = (event.clientY + parseInt(offset[1], 10)) + 'px'
+    // dropzone.appendChild(elements[offset[2]])
+    // console.log(elements[offset[2]])
+    // dropzone.appendChild(document.getElementById(offset[2]));
+    event.preventDefault();
+    return false
+}
 
-// drag event listener on each element on the canvas
-canvas.querySelectorAll('[draggable="false"]').forEach(element => {
-  element.addEventListener('drag', event => {
-    const canvasRect = canvas.getBoundingClientRect();
-    element.style.left = `${event.clientX - canvasRect.left}px`;
-    element.style.top = `${event.clientY - canvasRect.top}px`;
-  });
-});
-
-
+// select all the cards
+let card = document.getElementsByClassName('card');
+// iterated over each of them
+for (var i = 0; i < card.length; i++) {
+  card[i].addEventListener('dragstart', dragStartHandler, false);
+  document.body.addEventListener('dragover', dragOverHandler, false);
+  document.body.addEventListener('drop', dropHandler, false);
+}
