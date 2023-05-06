@@ -9,9 +9,29 @@ body{
   font-family: 'MyCustomFont', sans-serif;
 }
 
+.dropzone {
+  height: 600px;
+    width: 100%;
+}
+
+.card {
+  border: 2px solid black;
+  padding: 15px;
+}
+
+.container .card.hide {
+  display: none;
+}
+
+.container .card.show {
+  animation: fadeIn 0.5s ease;
+}
+
 .first{
   background-color: salmon;
 }
+
+
 
 h1 { 
   line-height: 24px;

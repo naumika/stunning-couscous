@@ -72,7 +72,7 @@ function filterFn(event) {
     // apply the active class to the target
     event.target.classList.add('active')
 
-    const filterValue = event.target.getAttribute('category') // Fish
+    const filterValue = event.target.getAttribute('data-filter') // Fish
 
     for(let i = 0; i < cards.length; i++){
       if(cards[i].classList.contains(filterValue) || filterValue === 'all'){
@@ -123,6 +123,6 @@ let card = document.getElementsByClassName('card');
 // iterated over each of them
 for (var i = 0; i < card.length; i++) {
   card[i].addEventListener('dragstart', dragStartHandler, false);
-  document.body.addEventListener('dragover', dragOverHandler, false);
-  document.body.addEventListener('drop', dropHandler, false);
+  dropzone.addEventListener('dragover', dragOverHandler, false);
+  dropzone.addEventListener('drop', dropHandler, false);
 }
