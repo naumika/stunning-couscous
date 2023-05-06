@@ -232,7 +232,6 @@ function filterFn(event) {
 
 filterBtns.addEventListener("click", filterFn);
 
-
 // drag and drop
 
 function dragStartHandler(event){
@@ -265,8 +264,8 @@ let card = document.getElementsByClassName('card');
 // iterated over each of them
 for (var i = 0; i < card.length; i++) {
   card[i].addEventListener('dragstart', dragStartHandler, false);
-  // document.body.addEventListener('dragover', dragOverHandler, false);
-  // document.body.addEventListener('drop', dropHandler, false);
-  dropzone.addEventListener('dragover', dragOverHandler, false);
-  dropzone.addEventListener('drop', dropHandler, false);
+  document.body.addEventListener('dragover', dragOverHandler, false);
+  document.body.addEventListener('drop', dropHandler, false);
+  // dropzone.addEventListener('dragover', dragOverHandler, false);
+  // dropzone.addEventListener('drop', dropHandler, false);
 }
