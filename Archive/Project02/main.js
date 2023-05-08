@@ -232,7 +232,6 @@ function renderDataToPage(results) {
     // create list item 
     let card = document.createElement('div');
     // add a class to each item of the results
-    
     card.classList.add('card', results[i].category) //Fishes
     // add the data name
     let title = document.createElement('h4')
@@ -244,8 +243,6 @@ function renderDataToPage(results) {
     // Add draggable attributes
     card.setAttribute('draggable', true);
     card.setAttribute('data-item', i);
-    card_id = results[i].category+"_"+i.toString()
-    card.setAttribute('id', card_id);
     // append fish image
     let image = document.createElement('img')
     image.setAttribute('src', results[i].image)
@@ -260,6 +257,7 @@ renderDataToPage(data);
 
 //---------- FILTER elements BY category
 let filterBtns = document.querySelector(".filters");
+
 let cards = document.querySelectorAll(".card");
 
 function filterFn(event) {
@@ -288,114 +286,40 @@ function filterFn(event) {
 
 filterBtns.addEventListener("click", filterFn);
 
-// --------------------DRAG/DROP------------------------------------------
+// drag and drop
 
+function dragStartHandler(event){
+  let style = getComputedStyle(event.target, null);
+  console.log(event)
+  console.log(style)
+  console.log(event.clientX)
+  event.dataTransfer.setData('text/plain', (parseInt(style.getPropertyValue("left"), 10) - event.clientX) + ',' + (parseInt(style.getPropertyValue("top"), 10) - event.clientY) + ',' + event.target.getAttribute('data-item'))
+  event.currentTarget.style.backgroundColor = 'yellow'
+}
 
-// Select the droppable area element
-const plant_dropzone = document.querySelector('.plant-dropzone');
-const fish_dropzone = document.querySelector('.fish-dropzone');
-
-console.log("plant_dropzone: ")
-console.log(plant_dropzone)
-
-console.log("fish_dropzone: ")
-console.log(fish_dropzone)
-
-// Add a "draggable" attribute to each card element
-cards.forEach(card => {
-  card.setAttribute('draggable', 'true');
-});
-
-// Add an event listener to each card element for the "dragstart" event
-cards.forEach(card => {
-  card.addEventListener('dragstart', event => {
-    // Set the "data" for the drag event to include the ID of the card element
-
-    console.log("drag event:")
-    console.log(event)
-    event.dataTransfer.setData('text/plain', card.id);
-    event.dataTransfer.effectAllowed = 'copy';
-  });
-
-});
-
-plant_dropzone.addEventListener('dragover', event => {
-  console.log(`dragover: effectAllowed = ${event.dataTransfer.effectAllowed}`);
+function dragOverHandler(event){
   event.preventDefault();
-  plant_dropzone.classList.add('highlight-plant');
-});
+  event.dataTransfer.dropEffect = "move";
+  return false
+}
 
-plant_dropzone.addEventListener('dragleave', event => {
-  plant_dropzone.classList.remove('highlight-plant');
-});
+function dropHandler(event){
+  let offset = event.dataTransfer.getData("text/plain").split(',')
+  console.log('offset', offset)
+  let elements= event.getElementsByClassName('card')
+    elements[parseInt(offset[2])].style.left = (event.clientX + parseInt(offset[0], 10)) + 'px';
+    elements[parseInt(offset[2])].style.top = (event.clientY + parseInt(offset[1], 10)) + 'px'
+    event.preventDefault();
+    return false
+}
 
-plant_dropzone.addEventListener('drop', event => {
-  console.log(`dragover: effectAllowed = ${event.dataTransfer.effectAllowed}`);
-  event.preventDefault();
-  plant_dropzone.classList.remove('highlight-plant');
-
-  // Get the ID of the card element from the "data" of the drag event
-  const id = event.dataTransfer.getData('text/plain');
-  console.log("id")
-  console.log(id)
-
-
-  // Get the card element from its ID
-  const card = document.getElementById(id);
-  if (card.classList.contains("Plants") || card.classList.contains("Birds") ){
-    const card_clone = card.cloneNode(true);
-    const card_image = card_clone.childNodes[2]
-
-    card_image.style.height = '110px'
-    card_image.style.width = '110px'
-
-    // Append the cloned element to the drop zone
-    plant_dropzone.appendChild(card_image);
-
-  }else{
-    alert("Please insert only plants or birds above the bed zone!");
-  }
-  
-});
-
-
-
-fish_dropzone.addEventListener('dragover', event => {
-  console.log(`dragover: effectAllowed = ${event.dataTransfer.effectAllowed}`);
-  event.preventDefault();
-  fish_dropzone.classList.add('highlight-fish');
-  console.log(fish_dropzone.classList)
-});
-
-fish_dropzone.addEventListener('dragleave', event => {
-  fish_dropzone.classList.remove('highlight-fish');
-});
-
-fish_dropzone.addEventListener('drop', event => {
-  console.log(`dragover: effectAllowed = ${event.dataTransfer.effectAllowed}`);
-  event.preventDefault();
-  fish_dropzone.classList.remove('highlight-fish');
-
-  // Get the ID of the card element from the "data" of the drag event
-  const id = event.dataTransfer.getData('text/plain');
-  console.log("id")
-  console.log(id)
-
-
-  // Get the card element from its ID
-  const card = document.getElementById(id);
-  if (card.classList.contains("Fishes")){
-    const card_clone = card.cloneNode(true);
-    const card_image = card_clone.childNodes[2]
-  
-    card_image.style.height = '40px'
-    card_image.style.width = '80px'
-  
-    // Append the cloned element to the drop zone
-    fish_dropzone.appendChild(card_image);
-  }else{
-    alert("Please insert only fishes below the bed zone!");
-  }
-  
-  
-});
+// select all the cards
+let card = document.getElementsByClassName('card');
+// iterated over each of them
+for (var i = 0; i < card.length; i++) {
+  card[i].addEventListener('dragstart', dragStartHandler, false);
+  document.body.addEventListener('dragover', dragOverHandler, false);
+  document.body.addEventListener('drop', dropHandler, false);
+  // dropzone.addEventListener('dragover', dragOverHandler, false);
+  // dropzone.addEventListener('drop', dropHandler, false);
+}
